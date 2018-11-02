@@ -1,0 +1,16 @@
+.picker-calendar-header {
+    text-align: center;
+}
+.picker-calendar-header > div {
+    display: inline;
+}
+.picker-calendar-header-prevmonth {
+    float: left;
+}
+.picker-calendar-header-title {
+    text-align: center;
+    line-height: 48px;
+}
+.picker-calendar-header-nextmonth {
+    float: right;
+}
