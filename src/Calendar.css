@@ -1,16 +1,33 @@
-.picker-calendar-header {
+.calendar-header {
     text-align: center;
+    background-color: #27272f;
+    margin-bottom: 20px;
 }
-.picker-calendar-header > div {
+.calendar-header > div {
     display: inline;
 }
-.picker-calendar-header-prevmonth {
+.calendar-header > .header-prevmonth {
     float: left;
 }
-.picker-calendar-header-title {
+.calendar-header > .header-title {
     text-align: center;
     line-height: 48px;
 }
-.picker-calendar-header-nextmonth {
+.calendar-header > .header-nextmonth {
     float: right;
+}
+.calendar-cell {
+    border: none;
+    display: inline-block;
+    width: 13%;
+    margin: 1px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+.calendar-cell.selected {
+    background-color: #27272f;
+}
+.calendar-prevdate, .calendar-nextdate {
+    color: #aaaaaa;
 }
