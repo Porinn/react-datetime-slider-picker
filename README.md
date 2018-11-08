@@ -4,7 +4,7 @@ React datetime picker component
 
 ## Overview
 
-This component refers to [input-moment](https://github.com/wangzuo/input-moment)
+This component received a motif from [input-moment](https://github.com/wangzuo/input-moment)
 
 The design is from https://dribbble.com/shots/1439965-Due-Date-and-Time-Picker.
 
