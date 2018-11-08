@@ -8,7 +8,7 @@ This component refers to [input-moment](https://github.com/wangzuo/input-moment)
 
 The design is from https://dribbble.com/shots/1439965-Due-Date-and-Time-Picker.
 
-[screenshot]: screenshot.png "Screenshot"
+![screenshot](https://user-images.githubusercontent.com/30774607/48204754-ec69bc80-e3ad-11e8-8542-a1e04e824fdb.png)
 
 ## Installation
 
