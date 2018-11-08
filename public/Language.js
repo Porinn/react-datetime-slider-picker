@@ -13,9 +13,9 @@ module.exports = {
         shortWeeks: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         year: 'Year',
         month: 'Month',
-        hours: 'hours',
-        minutes: 'minutes',
-        seconds: 'seconds',
+        hours: 'Hours',
+        minutes: 'Minutes',
+        seconds: 'Seconds',
         date: 'DATE',
         time: 'TIME',
         save: 'SAVE'
