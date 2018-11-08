@@ -15,10 +15,10 @@
 .picker-footer {
     padding: 12px;
 }
-.picker-footer > button {
+.picker-footer button {
     background-color: #27272f;
     color: #eeeeee;
 }
-.picker-footer > button svg {
+.picker-footer button svg {
     margin-right: 5px;
 }

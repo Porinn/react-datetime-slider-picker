@@ -1,32 +1,52 @@
 {
   "name": "react-datetime-slider-picker",
-  "description": "Datetime picker component for React.js",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.3.2",
-    "@material-ui/icons": "^3.0.1",
-    "@material-ui/lab": "^3.0.0-alpha.22",
-    "eslint-config-airbnb": "^17.1.0",
-    "moment": "^2.22.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
-  },
+  "version": "1.0.0",
+  "description": "React datetime picker component",
+  "main": "dist/Picker.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "example": "webpack-dev-server --mode development",
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch"
   },
-  "eslintConfig": {
-    "extends": "airbnb"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Porinn/react-datetime-slider-picker.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "keywords": [
+    "react",
+    "datetime",
+    "picker",
+    "material"
+  ],
+  "author": "Porinn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Porinn/react-datetime-slider-picker/issues"
+  },
+  "homepage": "https://github.com/Porinn/react-datetime-slider-picker#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.4.0",
+    "@material-ui/icons": "^3.0.1",
+    "@material-ui/lab": "^3.0.0-alpha.23",
+    "moment": "^2.22.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.1.5",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
 }

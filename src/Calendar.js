@@ -3,26 +3,27 @@ import React from 'react';
 import { IconButton } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 
-import Language from './Language';
+import Language from '../public/Language';
 
-import './Calendar.css';
+import '../public/Calendar.css';
 
-const lang = Language['en'];
 const moment = require('moment');
 
 export default class Calendar extends React.Component {
     constructor(props) {
         super(props);
 
-        this.goPrevmonth = this.goPrevMonth.bind(this);
-        this.goNextmonth = this.goNextMonth.bind(this);
-
         this.state = {
             currentYear: this.props.defaultValue.year,
             currentMonth:  this.props.defaultValue.month,
             currentDate: this.props.defaultValue.date,
+            currentWeek: this.props.defaultValue.week,
+            currentDay: this.props.defaultValue.day,
             selectedIndex: null
         }
+
+        this.goPrevmonth = this.goPrevMonth.bind(this);
+        this.goNextmonth = this.goNextMonth.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +35,13 @@ export default class Calendar extends React.Component {
     }
 
     onChange = () => {
-        this.props.onChange({year: this.state.currentYear, month: this.state.currentMonth, date: this.state.currentDate});
+        this.props.onChange({
+            year: this.state.currentYear, 
+            month: this.state.currentMonth, 
+            date: this.state.currentDate,
+            week: this.state.currentWeek,
+            day: this.state.currentDay
+        });
     }
 
     getDateCellsArray = () => {
@@ -106,7 +113,12 @@ export default class Calendar extends React.Component {
 
     selectDateCell = (index, type, date) => {
         if (type === 'present') {
-            this.setState({selectedIndex: index, currentDate: date}, () => this.onChange());
+            this.setState({
+                selectedIndex: index, 
+                currentDate: date,
+                currentWeek: Math.floor((date-1)/7)+1,
+                currentDay: moment({year: this.state.currentYear, month: this.state.currentMonth-1, date: date}).day()
+            }, () => this.onChange());
         }
     }
 
@@ -124,19 +136,20 @@ export default class Calendar extends React.Component {
     }
 
     render() {
-        const weeks = lang.shortWeeks;
+        const language = (this.props.language === 'ko') ? Language['ko'] : Language['en'];
         const dateCellsArray = this.getDateCellsArray();
+
 
         return (
             <div className='picker-calendar'>
                 <div className='calendar-header'>
                     <div className='header-prevmonth'><IconButton color='inherit' onClick={() => this.goPrevMonth()}><ChevronLeft /></IconButton></div>
-                    <div className='header-title'>{moment({year: this.state.currentYear, month: this.state.currentMonth-1}).format('MMMM YYYY')}</div>
+                    <div className='header-title'>{(language.language === 'en') ? moment({year: this.state.currentYear, month: this.state.currentMonth-1}).format('MMMM YYYY') : `${this.state.currentYear}${language.year} ${this.state.currentMonth}${language.month}`}</div>
                     <div className='header-nextmonth'><IconButton color='inherit' onClick={() => this.goNextMonth()}><ChevronRight /></IconButton></div>
                 </div>
                 <div className='calendar-calendar'>
                     <div className='calendar-calendar_header'>
-                        {weeks.map(item => {return <div key={item} className='calendar-dayrow calendar-cell'>{item}</div>})}
+                        {language.shortWeeks.map(item => {return <div key={item} className='calendar-dayrow calendar-cell'>{item}</div>})}
                     </div>
                     <div className='calendar-calendar_content'>
                         <this.DateCells week={0} array={dateCellsArray} />

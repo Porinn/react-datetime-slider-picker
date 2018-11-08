@@ -5,7 +5,9 @@ import { CheckCircleOutline, Today, AccessTime } from '@material-ui/icons';
 import Calendar from './Calendar';
 import TimePicker from './TimePicker';
 
-import './Picker.css';
+import Language from '../public/Language';
+
+import '../public/Picker.css';
 
 const moment = require('moment');
 
@@ -18,7 +20,9 @@ export default class Picker extends React.Component {
             date: {
                 year: moment().year(),
                 month: moment().month()+1,
-                date: moment().date()
+                date: moment().date(),
+                week: Math.floor((moment().date()-1)/7)+1,
+                day: moment().day()
             },
             time: {
                 hour: moment().hour(),
@@ -44,11 +48,16 @@ export default class Picker extends React.Component {
     }
 
     onSave = () => {
-        console.log(this.state.date);
-        console.log(this.state.time);
+        if (this.props.onSave !== undefined) {
+            this.props.onSave(this.state.date, this.state.time);
+        } else {
+            console.log({date: this.state.date, time: this.state.time});
+        }
     }
 
     render() {
+        const language = (this.props.language === 'ko') ? Language['ko'] : Language['en'];
+
         return (
             <div className='picker'>
                 <div className='picker-tab'>
@@ -59,15 +68,15 @@ export default class Picker extends React.Component {
                         textColor='inherit'
                         classes={{indicator: 'picker-tab-indicator'}}
                     >
-                        <Tab label='Date' icon={<Today />} classes={{selected: 'selected'}}/>
-                        <Tab label='Time' icon={<AccessTime />} classes={{selected: 'selected'}}/>
+                        <Tab label={language.date} icon={<Today />} classes={{selected: 'selected'}}/>
+                        <Tab label={language.time} icon={<AccessTime />} classes={{selected: 'selected'}}/>
                     </Tabs>
                 </div>
                 <div className='picker-form'>
-                    {(this.state.tab === 0) ? <Calendar defaultValue={this.state.date} onChange={(time) => this.onValueChange(true, time)} /> : <TimePicker enableSecond={(this.props.enableSecond !== undefined) ? this.props.enableSecond : true} defaultValue={this.state.time} onChange={(date) => this.onValueChange(false, date)}/>}
+                    {(this.state.tab === 0) ? <Calendar language={this.props.language} defaultValue={this.state.date} onChange={(time) => this.onValueChange(true, time)} /> : <TimePicker language={this.props.language} enableSecond={(this.props.enableSecond !== undefined) ? this.props.enableSecond : false} defaultValue={this.state.time} onChange={(date) => this.onValueChange(false, date)}/>}
                 </div>
                 <div className='picker-footer'>
-                    <Button onKeyDown={() => this.onSave} fullWidth><CheckCircleOutline />Save</Button>
+                    <div onClick={() => this.onSave()}><Button fullWidth><CheckCircleOutline />{language.save}</Button></div>
                 </div>
             </div>
         );

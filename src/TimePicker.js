@@ -1,7 +1,9 @@
 import React from 'react';
 import { Slider } from '@material-ui/lab';
 
-import './TimePicker.css';
+import Language from '../public/Language';
+
+import '../public/TimePicker.css';
 
 export default class TimePicker extends React.Component {
     constructor(props) {
@@ -39,6 +41,8 @@ export default class TimePicker extends React.Component {
     }
 
     render() {
+        const language = (this.props.language === 'ko') ? Language['ko'] : Language['en'];
+        
         return (
             <div className='picker-timepicker'>
                 <div className='timepicker-header'>
@@ -49,7 +53,7 @@ export default class TimePicker extends React.Component {
                 </div>
                 <div className='timepicker-slider'>
                     <div className='slider-hourslider'>
-                        <div className='slider-label'>Hour</div>
+                        <div className='slider-label'>{language.hours}</div>
                         <Slider
                             max={23}
                             step={1}
@@ -59,7 +63,7 @@ export default class TimePicker extends React.Component {
                         />
                     </div>
                     <div className='slider-minuteslider'>
-                        <div className='slider-label'>Minute</div>
+                        <div className='slider-label'>{language.minutes}</div>
                         <Slider
                             max={59}
                             step={1}
@@ -70,7 +74,7 @@ export default class TimePicker extends React.Component {
                     </div>
                     {(this.props.enableSecond !== undefined && this.props.enableSecond) ?
                     <div className='slider-secondslider'>
-                        <div className='slider-label'>Second</div>
+                        <div className='slider-label'>{language.seconds}</div>
                         <Slider
                             max={59}
                             step={1}
